@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		EA6BC1922AD02F0300E5C015 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6BC1912AD02F0300E5C015 /* AppDelegate.swift */; };
 		EA6BC1942AD02F0300E5C015 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6BC1932AD02F0300E5C015 /* SceneDelegate.swift */; };
-		EA6BC1962AD02F0300E5C015 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6BC1952AD02F0300E5C015 /* ViewController.swift */; };
-		EA6BC1992AD02F0300E5C015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA6BC1972AD02F0300E5C015 /* Main.storyboard */; };
 		EA6BC19B2AD02F0400E5C015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA6BC19A2AD02F0400E5C015 /* Assets.xcassets */; };
 		EA6BC19E2AD02F0400E5C015 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA6BC19C2AD02F0400E5C015 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -19,8 +17,6 @@
 		EA6BC18E2AD02F0300E5C015 /* instagram-snapkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "instagram-snapkit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA6BC1912AD02F0300E5C015 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA6BC1932AD02F0300E5C015 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EA6BC1952AD02F0300E5C015 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EA6BC1982AD02F0300E5C015 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA6BC19A2AD02F0400E5C015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA6BC19D2AD02F0400E5C015 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA6BC19F2AD02F0400E5C015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,15 +52,29 @@
 		EA6BC1902AD02F0300E5C015 /* instagram-snapkit */ = {
 			isa = PBXGroup;
 			children = (
+				EA6BC1A52AD02F9B00E5C015 /* Application */,
+				EA6BC1A62AD02FB600E5C015 /* Resources */,
+			);
+			path = "instagram-snapkit";
+			sourceTree = "<group>";
+		};
+		EA6BC1A52AD02F9B00E5C015 /* Application */ = {
+			isa = PBXGroup;
+			children = (
 				EA6BC1912AD02F0300E5C015 /* AppDelegate.swift */,
 				EA6BC1932AD02F0300E5C015 /* SceneDelegate.swift */,
-				EA6BC1952AD02F0300E5C015 /* ViewController.swift */,
-				EA6BC1972AD02F0300E5C015 /* Main.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		EA6BC1A62AD02FB600E5C015 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				EA6BC19A2AD02F0400E5C015 /* Assets.xcassets */,
 				EA6BC19C2AD02F0400E5C015 /* LaunchScreen.storyboard */,
 				EA6BC19F2AD02F0400E5C015 /* Info.plist */,
 			);
-			path = "instagram-snapkit";
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +137,6 @@
 			files = (
 				EA6BC19E2AD02F0400E5C015 /* LaunchScreen.storyboard in Resources */,
 				EA6BC19B2AD02F0400E5C015 /* Assets.xcassets in Resources */,
-				EA6BC1992AD02F0300E5C015 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +147,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA6BC1962AD02F0300E5C015 /* ViewController.swift in Sources */,
 				EA6BC1922AD02F0300E5C015 /* AppDelegate.swift in Sources */,
 				EA6BC1942AD02F0300E5C015 /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +155,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EA6BC1972AD02F0300E5C015 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA6BC1982AD02F0300E5C015 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EA6BC19C2AD02F0400E5C015 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,10 +294,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 532T45L6HD;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "instagram-snapkit/Info.plist";
+				INFOPLIST_FILE = "instagram-snapkit/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,10 +322,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 532T45L6HD;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "instagram-snapkit/Info.plist";
+				INFOPLIST_FILE = "instagram-snapkit/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
