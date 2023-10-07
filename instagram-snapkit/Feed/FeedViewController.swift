@@ -23,6 +23,7 @@ private extension FeedViewController {
         view.backgroundColor = .white
         navigationController?.navigationBar.tintColor = .black
         navigationItem.leftBarButtonItems = makeLeftBarItems()
+        navigationItem.rightBarButtonItems = makeRightBarItems()
     }
     
     func makeLeftBarItems() -> [UIBarButtonItem] {
@@ -30,6 +31,40 @@ private extension FeedViewController {
         let dropDownButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "chevron.down"), target: self, action: nil, menu: makeDropDownMenu())
         return [logoBarButtonItem, dropDownButtonItem]
     }
+    
+    func makeRightBarItems() -> [UIBarButtonItem] {
+        let likesPhotoButton = UIBarButtonItem(customView: RightTopElementsView(imageName: "like.void"))
+        let directChatButton = UIBarButtonItem(customView: RightTopElementsView(imageName: "direct"))
+        let addPostButton = UIBarButtonItem(customView: RightTopElementsView(imageName: "addButton"))
+        
+        let customSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        customSpace.width = 24
+        
+        likesPhotoButton.target = self
+        likesPhotoButton.action = #selector(didTapLikesPhoto)
+        
+        directChatButton.target = self
+        directChatButton.action = #selector(didTapDirect)
+        
+        addPostButton.target = self
+        addPostButton.action = #selector(didAddPost)
+        addPostButton.style = .plain
+        
+        return [likesPhotoButton, customSpace, directChatButton, customSpace, addPostButton]
+    }
+    
+    @objc func didTapLikesPhoto() {
+        print("Тут должен быть переход на экран лайкнутых фото")
+    }
+    
+    @objc func didTapDirect() {
+        print("Тут должен быть переход на экран личных сообщений")
+    }
+    
+    @objc func didAddPost() {
+        print("Тут должен быть переход на экран создания поста")
+    }
+    
     
     func makeDropDownMenu() -> UIMenu {
         let subsItem = UIAction(title: "Подписки", image: UIImage(systemName: "person.2")) { _ in
