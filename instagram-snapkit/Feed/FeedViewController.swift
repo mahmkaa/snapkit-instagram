@@ -14,6 +14,20 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         initialize()
     }
+    
+    // MARK: - private methods
+    private let tableView = UITableView()
+    private var items: [FeedItemType] = [
+        .stories([
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: true, isNewStory: false),
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: false, isNewStory: true),
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: false, isNewStory: true),
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: false, isNewStory: false),
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: false, isNewStory: true),
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: false, isNewStory: true),
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: false, isNewStory: true)
+        ])
+    ]
 }
 
 // MARK: - private methods
@@ -24,6 +38,13 @@ private extension FeedViewController {
         navigationController?.navigationBar.tintColor = .black
         navigationItem.leftBarButtonItems = makeLeftBarItems()
         navigationItem.rightBarButtonItems = makeRightBarItems()
+        tableView.dataSource = self
+        tableView.register(FeedStoriesSetCell.self, forCellReuseIdentifier: String(describing: FeedStoriesSetCell.self))
+        tableView.register(FeedPostCell.self, forCellReuseIdentifier: String(describing: FeedPostCell.self))
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     func makeLeftBarItems() -> [UIBarButtonItem] {
@@ -41,27 +62,26 @@ private extension FeedViewController {
         customSpace.width = 24
         
         likesPhotoButton.target = self
-        likesPhotoButton.action = #selector(didTapLikesPhoto)
+        likesPhotoButton.action = #selector(didTapLikesPhoto(sender:))
         
         directChatButton.target = self
-        directChatButton.action = #selector(didTapDirect)
+        directChatButton.action = #selector(didTapDirect(sender:))
         
         addPostButton.target = self
-        addPostButton.action = #selector(didAddPost)
-        addPostButton.style = .plain
+        addPostButton.action = #selector(didAddPost(sender:))
         
         return [likesPhotoButton, customSpace, directChatButton, customSpace, addPostButton]
     }
     
-    @objc func didTapLikesPhoto() {
+    @objc func didTapLikesPhoto(sender: UIBarButtonItem) {
         print("Тут должен быть переход на экран лайкнутых фото")
     }
     
-    @objc func didTapDirect() {
+    @objc func didTapDirect(sender: UIBarButtonItem) {
         print("Тут должен быть переход на экран личных сообщений")
     }
     
-    @objc func didAddPost() {
+    @objc func didAddPost(sender: UIBarButtonItem) {
         print("Тут должен быть переход на экран создания поста")
     }
     
@@ -74,5 +94,26 @@ private extension FeedViewController {
             print("favorites")
         }
         return UIMenu(title: "", children: [subsItem, favsItem])
+    }
+}
+
+// MARK: - UITableViewSource
+extension FeedViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = items[indexPath.row]
+        switch item {
+        case .stories(let info):
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FeedStoriesSetCell.self), for: indexPath) as! FeedStoriesSetCell
+            cell.config(with: info)
+            return cell
+        case .post(let post):
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FeedPostCell.self), for: indexPath) as! FeedPostCell
+            cell.config(with: post)
+            return cell
+        }
     }
 }
