@@ -43,6 +43,7 @@ class StoriesItemCell: UICollectionViewCell {
         let view = UIImageView()
         view.layer.cornerRadius = UIConstants.imageSize / 2
         view.clipsToBounds = true
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
