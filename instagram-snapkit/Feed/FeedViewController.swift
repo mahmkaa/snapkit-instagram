@@ -20,10 +20,10 @@ class FeedViewController: UIViewController {
     private var items: [FeedItemType] = [
         .stories([
             FeedStoriesItemCellInfo(image: UIImage(named: "profilePhoto")!, username: "Mevie", isAddButtonVisible: true, isNewStory: false),
-            FeedStoriesItemCellInfo(image: UIImage(named: "storyPhoto1")!, username: "Krisa_fun", isAddButtonVisible: false, isNewStory: true),
+            FeedStoriesItemCellInfo(image: UIImage(named: "storyPhoto1")!, username: "puh.lya", isAddButtonVisible: false, isNewStory: true),
             FeedStoriesItemCellInfo(image: UIImage(named: "storyPhoto2")!, username: "mish.pisyush", isAddButtonVisible: false, isNewStory: true),
             FeedStoriesItemCellInfo(image: UIImage(named: "storyPhoto3")!, username: "Li_Rong", isAddButtonVisible: false, isNewStory: false),
-            FeedStoriesItemCellInfo(image: UIImage(named: "storyPhoto4")!, username: "everyone-mouse", isAddButtonVisible: false, isNewStory: true),
+            FeedStoriesItemCellInfo(image: UIImage(named: "storyPhoto4")!, username: "Krisa_fun", isAddButtonVisible: false, isNewStory: true),
             FeedStoriesItemCellInfo(image: UIImage(named: "storyPhoto5")!, username: "Hitl.Rat", isAddButtonVisible: false, isNewStory: true),
             FeedStoriesItemCellInfo(image: UIImage(named: "storyPhoto6")!, username: "mouse.love.cheez", isAddButtonVisible: false, isNewStory: true)
         ]),
