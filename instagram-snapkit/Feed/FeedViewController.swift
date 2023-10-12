@@ -19,14 +19,15 @@ class FeedViewController: UIViewController {
     private let tableView = UITableView()
     private var items: [FeedItemType] = [
         .stories([
-            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: true, isNewStory: false),
-            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: false, isNewStory: true),
-            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: false, isNewStory: true),
-            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: false, isNewStory: false),
-            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: false, isNewStory: true),
-            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: false, isNewStory: true),
-            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Крысетка", isAddButtonVisible: false, isNewStory: true)
-        ])
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "krisyota-milota", isAddButtonVisible: true, isNewStory: false),
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Krisa_fun", isAddButtonVisible: false, isNewStory: true),
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "mish.pisyush", isAddButtonVisible: false, isNewStory: true),
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "ratlover", isAddButtonVisible: false, isNewStory: false),
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "everyone-mouse", isAddButtonVisible: false, isNewStory: true),
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "Hitler.Rat", isAddButtonVisible: false, isNewStory: true),
+            FeedStoriesItemCellInfo(image: UIImage(named: "postPhoto")!, username: "mouse.love.cheez", isAddButtonVisible: false, isNewStory: true)
+        ]),
+        .post(FeedPostItemInfo(userImage: UIImage(named: "postPhoto")!, username: "mouse", postSubtitle: "Sponsored", postImage: UIImage(named: "postPhoto")!, numberOfLikes: 1488, comment: CommentShortInfo(username: "Li_Rong", commentText: "i love you ♥️")))
     ]
 }
 
@@ -39,6 +40,7 @@ private extension FeedViewController {
         navigationItem.leftBarButtonItems = makeLeftBarItems()
         navigationItem.rightBarButtonItems = makeRightBarItems()
         tableView.dataSource = self
+        tableView.separatorColor = .clear
         tableView.register(FeedStoriesSetCell.self, forCellReuseIdentifier: String(describing: FeedStoriesSetCell.self))
         tableView.register(FeedPostCell.self, forCellReuseIdentifier: String(describing: FeedPostCell.self))
         view.addSubview(tableView)
