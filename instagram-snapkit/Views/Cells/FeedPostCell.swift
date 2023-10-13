@@ -15,6 +15,10 @@ class FeedPostCell: UITableViewCell {
         usernameLabel.text = info.username
         subtitleLabel.text = info.postSubtitle
         postImageView.image = info.postImage
+        likesLabel.text = "\(info.numberOfLikes) Likes"
+        if let comment = info.comment {
+            configCommentLabel(with: comment)
+        }
     }
     
     // MARK: - Init
@@ -37,9 +41,13 @@ class FeedPostCell: UITableViewCell {
         static let usernameStackToProfileImage: CGFloat = 12
         static let postImageToUserOffset: CGFloat = 6
         static let actionsStackHeight: CGFloat = 24
-        static let actionsStackToPostOffset: CGFloat = 6
+        static let actionsStackToPostOffset: CGFloat = 12
         static let actionsStackSpace: CGFloat = 20
         static let actionsButtonsHW: CGFloat = 24
+        static let actionsStackToLikesLabelOffset: CGFloat = 12
+        static let likesLabelFontSize: CGFloat = 14
+        static let commentLabelFontSize: CGFloat = 14
+        static let commentToLikesOffset: CGFloat = 12
     }
     
     // MARK: - Private properties
@@ -47,6 +55,7 @@ class FeedPostCell: UITableViewCell {
         let view = UIImageView()
         view.layer.cornerRadius = UIConstants.userImageSize / 2
         view.clipsToBounds = true
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
@@ -93,6 +102,18 @@ class FeedPostCell: UITableViewCell {
         button.tintColor = .black
         button.setImage(UIImage(named: "shareButton"), for: .normal)
         return button
+    }()
+    
+    private let likesLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: UIConstants.likesLabelFontSize, weight: .bold)
+        return label
+    }()
+    
+    private let commentLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: UIConstants.commentLabelFontSize)
+        return label
     }()
 }
 
@@ -146,5 +167,24 @@ private extension FeedPostCell {
         shareButton.snp.makeConstraints { make in
             make.height.width.equalTo(UIConstants.actionsButtonsHW)
         }
+        contentView.addSubview(likesLabel)
+        likesLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(UIConstants.contentInset)
+            make.top.equalTo(actionsStack.snp.bottom).offset(UIConstants.actionsStackToLikesLabelOffset)
+        }
+        contentView.addSubview(commentLabel)
+        commentLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(UIConstants.contentInset)
+            make.top.equalTo(likesLabel.snp.bottom).offset(UIConstants.commentToLikesOffset)
+            make.bottom.equalToSuperview().inset(UIConstants.contentInset)
+        }
+    }
+    
+    func configCommentLabel(with comment: CommentShortInfo) {
+        let string = comment.username + " " + comment.commentText
+        let attributedString = NSMutableAttributedString(string: string)
+        let range = NSRange(location: .zero, length: comment.username.count)
+        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: UIConstants.commentLabelFontSize), range: range)
+        commentLabel.attributedText = attributedString
     }
 }

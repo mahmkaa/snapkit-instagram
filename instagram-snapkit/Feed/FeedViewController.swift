@@ -56,23 +56,19 @@ private extension FeedViewController {
     }
     
     func makeRightBarItems() -> [UIBarButtonItem] {
-        let likesPhotoButton = UIBarButtonItem(customView: RightTopElementsView(imageName: "like.void"))
-        let directChatButton = UIBarButtonItem(customView: RightTopElementsView(imageName: "direct"))
-        let addPostButton = UIBarButtonItem(customView: RightTopElementsView(imageName: "addButton"))
+        let likeImage = UIImage(named: "like.void")!
+        let likesPhotoButton = UIBarButtonItem.customBarButtonItem(withImage: likeImage, target: self, action: #selector(didTapLikesPhoto(sender:)))
+        
+        let directImage = UIImage(named: "direct")!
+        let directChatButton = UIBarButtonItem.customBarButtonItem(withImage: directImage, target: self, action: #selector(didTapDirect(sender:)))
+        
+        let addImage = UIImage(named: "addButton")!
+        let addPostButton = UIBarButtonItem.customBarButtonItem(withImage: addImage, target: self, action: #selector(didAddPost(sender:)))
         
         let customSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         customSpace.width = 24
         
-        likesPhotoButton.target = self
-        likesPhotoButton.action = #selector(didTapLikesPhoto(sender:))
-        
-        directChatButton.target = self
-        directChatButton.action = #selector(didTapDirect(sender:))
-        
-        addPostButton.target = self
-        addPostButton.action = #selector(didAddPost(sender:))
-        
-        return [likesPhotoButton, customSpace, directChatButton, customSpace, addPostButton]
+        return [addPostButton, customSpace, directChatButton, customSpace, likesPhotoButton]
     }
     
     @objc func didTapLikesPhoto(sender: UIBarButtonItem) {
@@ -118,4 +114,24 @@ extension FeedViewController: UITableViewDataSource {
             return cell
         }
     }
+}
+
+extension UIBarButtonItem {
+    static func customBarButtonItem(withImage image: UIImage, target: Any?, action: Selector) -> UIBarButtonItem {
+            let customView = UIImageView(image: image)
+            customView.contentMode = .scaleAspectFit
+
+            //Констрейны с помощью SnapKit
+            customView.snp.makeConstraints { make in
+                make.width.equalTo(24)
+                make.height.equalTo(24)
+                //make.bottom.equalToSuperview().inset(12)
+            }
+
+            let barButtonItem = UIBarButtonItem(customView: customView)
+        barButtonItem.target = target as AnyObject
+            barButtonItem.action = action
+
+            return barButtonItem
+        }
 }
